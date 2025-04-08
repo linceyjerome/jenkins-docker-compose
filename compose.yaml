@@ -9,7 +9,7 @@ services:
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false 
       JENKINS_OPTS: --argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin
     ports:
-      - "8080:8080"
+      - "8000:8000"
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
