@@ -1,26 +1,22 @@
-version: '3'
+version: '3.8'
 
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
     container_name: jenkins
-    user: root # <--- Important pour avoir les permissions d'exécuter docker
+    user: root
     environment:
-      JAVA_OPTS: -Djenkins.install.runSetupWizard=false 
+      JAVA_OPTS: -Djenkins.install.runSetupWizard=false
       JENKINS_OPTS: --argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin
     ports:
-      - "8000:8000"
+      - "8080:8080"
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock # <--- Accès au Docker de ta machine
-    networks:
-      - jenkins_network
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
 
 volumes:
   jenkins_home:
-
-networks:
-  jenkins_network:
-    driver: bridge
