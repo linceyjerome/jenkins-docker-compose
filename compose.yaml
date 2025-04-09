@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile.jenkins
     container_name: jenkins
-    user: root
     environment:
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false
       JENKINS_OPTS: --argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin
@@ -14,9 +13,11 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - jenkins_home:/var/jenkins_home
+      - ./jenkins_home:/var/jenkins_home
+      - jenkins_home:/var/jenkins_home_temp
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
+    privileged: true
 
 volumes:
   jenkins_home:

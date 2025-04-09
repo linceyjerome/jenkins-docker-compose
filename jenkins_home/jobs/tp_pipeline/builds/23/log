@@ -1,0 +1,83 @@
+Started by user unknown or anonymous
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/tp_pipeline
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/tp_pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/linceyjerome/tpFinalCICD # timeout=10
+Fetching upstream changes from https://github.com/linceyjerome/tpFinalCICD
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/linceyjerome/tpFinalCICD  +refs/heads/master:refs/remotes/origin/master # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision ad2ce102d254360cbd9d9bd5a32aad3f966b8f34 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f ad2ce102d254360cbd9d9bd5a32aad3f966b8f34 # timeout=10
+Commit message: "changing docker file"
+ > git rev-list --no-walk ad2ce102d254360cbd9d9bd5a32aad3f966b8f34 # timeout=10
+[tp_pipeline] $ /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/Maven/bin/mvn clean install
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< org.example:demo >--------------------------
+[INFO] Building demo 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ demo ---
+[INFO] Deleting /var/jenkins_home/workspace/tp_pipeline/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ demo ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug target 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demo ---
+[INFO] skip non existing resourceDirectory /var/jenkins_home/workspace/tp_pipeline/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ demo ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ demo ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- war:3.4.0:war (default-war) @ demo ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [demo] in [/var/jenkins_home/workspace/tp_pipeline/target/demo-1.0-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/jenkins_home/workspace/tp_pipeline/src/main/webapp]
+[INFO] Building war: /var/jenkins_home/workspace/tp_pipeline/target/demo-1.0-SNAPSHOT.war
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ demo ---
+[INFO] Installing /var/jenkins_home/workspace/tp_pipeline/pom.xml to /var/jenkins_home/.m2/repository/org/example/demo/1.0-SNAPSHOT/demo-1.0-SNAPSHOT.pom
+[INFO] Installing /var/jenkins_home/workspace/tp_pipeline/target/demo-1.0-SNAPSHOT.war to /var/jenkins_home/.m2/repository/org/example/demo/1.0-SNAPSHOT/demo-1.0-SNAPSHOT.war
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  33.302 s
+[INFO] Finished at: 2025-04-09T03:03:46Z
+[INFO] ------------------------------------------------------------------------
+ERROR: Could not find credentials matching c83ed854-e46f-43d0-9a70-893701a14d38
+hudson.AbortException: Could not find credentials matching c83ed854-e46f-43d0-9a70-893701a14d38
+	at PluginClassLoader for docker-commons//org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint.newKeyMaterialFactory(DockerRegistryEndpoint.java:271)
+	at PluginClassLoader for docker-commons//org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint.newKeyMaterialFactory(DockerRegistryEndpoint.java:258)
+	at PluginClassLoader for docker-commons//org.jenkinsci.plugins.docker.commons.credentials.DockerRegistryEndpoint.newKeyMaterialFactory(DockerRegistryEndpoint.java:250)
+	at PluginClassLoader for docker-build-publish//com.cloudbees.dockerpublish.DockerBuilder$Perform.executeCmd(DockerBuilder.java:457)
+	at PluginClassLoader for docker-build-publish//com.cloudbees.dockerpublish.DockerBuilder$Perform.executeCmd(DockerBuilder.java:431)
+	at PluginClassLoader for docker-build-publish//com.cloudbees.dockerpublish.DockerBuilder$Perform.buildAndTag(DockerBuilder.java:373)
+	at PluginClassLoader for docker-build-publish//com.cloudbees.dockerpublish.DockerBuilder$Perform.exec(DockerBuilder.java:311)
+	at PluginClassLoader for docker-build-publish//com.cloudbees.dockerpublish.DockerBuilder$Perform.access$100(DockerBuilder.java:291)
+	at PluginClassLoader for docker-build-publish//com.cloudbees.dockerpublish.DockerBuilder.perform(DockerBuilder.java:262)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:818)
+	at hudson.model.Build$BuildExecution.build(Build.java:199)
+	at hudson.model.Build$BuildExecution.doRun(Build.java:164)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:527)
+	at hudson.model.Run.execute(Run.java:1833)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:44)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:446)
+Build step 'Docker Build and Publish' marked build as failure
+Finished: FAILURE

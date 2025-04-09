@@ -1,0 +1,13 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2025-04-09 00:34:44.486 UTC</timestamp>
+  <md5sum>239d45e3a21e5cff6ad4899a8f5c25bd</md5sum>
+  <fileName>Credential id=a70bea40-a8ab-4293-92b3-6a15076000dc name=linceyjerome/******</fileName>
+  <usages>
+    <entry>
+      <string>tp_pipeline</string>
+      <ranges>1-8</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>
