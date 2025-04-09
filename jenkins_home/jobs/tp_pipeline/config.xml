@@ -49,14 +49,15 @@ install</targets>
     <com.cloudbees.dockerpublish.DockerBuilder plugin="docker-build-publish@1.4.0">
       <server plugin="docker-commons@451.vd12c371eeeb_3"/>
       <registry plugin="docker-commons@451.vd12c371eeeb_3">
-        <credentialsId>1f960a80-e212-43dd-92d7-bf08d2226a24</credentialsId>
+        <url>https://index.docker.io/v1/</url>
+        <credentialsId>dockerhub</credentialsId>
       </registry>
       <repoName>lincey/tp_pipeline</repoName>
       <noCache>false</noCache>
       <forcePull>true</forcePull>
       <skipBuild>false</skipBuild>
       <skipDecorate>false</skipDecorate>
-      <repoTag>${BUILD_NUMBER}</repoTag>
+      <repoTag>test</repoTag>
       <skipPush>false</skipPush>
       <createFingerprint>true</createFingerprint>
       <skipTagLatest>false</skipTagLatest>

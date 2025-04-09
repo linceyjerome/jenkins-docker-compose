@@ -1,0 +1,180 @@
+Started by user unknown or anonymous
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/tp_pipeline
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/tp_pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/linceyjerome/tpFinalCICD # timeout=10
+Fetching upstream changes from https://github.com/linceyjerome/tpFinalCICD
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/linceyjerome/tpFinalCICD  +refs/heads/master:refs/remotes/origin/master # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision ad2ce102d254360cbd9d9bd5a32aad3f966b8f34 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f ad2ce102d254360cbd9d9bd5a32aad3f966b8f34 # timeout=10
+Commit message: "changing docker file"
+ > git rev-list --no-walk ad2ce102d254360cbd9d9bd5a32aad3f966b8f34 # timeout=10
+[tp_pipeline] $ /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/Maven/bin/mvn clean install
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< org.example:demo >--------------------------
+[INFO] Building demo 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ demo ---
+[INFO] Deleting /var/jenkins_home/workspace/tp_pipeline/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ demo ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug target 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ demo ---
+[INFO] skip non existing resourceDirectory /var/jenkins_home/workspace/tp_pipeline/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ demo ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ demo ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- war:3.4.0:war (default-war) @ demo ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [demo] in [/var/jenkins_home/workspace/tp_pipeline/target/demo-1.0-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/jenkins_home/workspace/tp_pipeline/src/main/webapp]
+[INFO] Building war: /var/jenkins_home/workspace/tp_pipeline/target/demo-1.0-SNAPSHOT.war
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ demo ---
+[INFO] Installing /var/jenkins_home/workspace/tp_pipeline/pom.xml to /var/jenkins_home/.m2/repository/org/example/demo/1.0-SNAPSHOT/demo-1.0-SNAPSHOT.pom
+[INFO] Installing /var/jenkins_home/workspace/tp_pipeline/target/demo-1.0-SNAPSHOT.war to /var/jenkins_home/.m2/repository/org/example/demo/1.0-SNAPSHOT/demo-1.0-SNAPSHOT.war
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  26.375 s
+[INFO] Finished at: 2025-04-09T03:35:04Z
+[INFO] ------------------------------------------------------------------------
+[tp_pipeline] $ docker build -t lincey/tp_pipeline:latest --pull=true /var/jenkins_home/workspace/tp_pipeline
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 98B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/tomcat:9.0
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B 0.0s done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/tomcat:9.0@sha256:8299f3e2f559f57c683a38ff903b0caff1d789a2932686d30422f9dcd99c130e
+#4 resolve docker.io/library/tomcat:9.0@sha256:8299f3e2f559f57c683a38ff903b0caff1d789a2932686d30422f9dcd99c130e 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 4.92MB 5.0s
+#5 transferring context: 17.43MB 5.4s done
+#5 DONE 5.4s
+
+#4 [1/2] FROM docker.io/library/tomcat:9.0@sha256:8299f3e2f559f57c683a38ff903b0caff1d789a2932686d30422f9dcd99c130e
+#4 CACHED
+
+#6 [2/2] COPY target/*.war /usr/local/tomcat/webapps/
+#6 DONE 0.1s
+
+#7 exporting to image
+#7 exporting layers
+#7 exporting layers 0.6s done
+#7 exporting manifest sha256:2dd4f0595827adfed37174ae181dd8e67f02c5f20ad5cb2a47f83892296b891d 0.0s done
+#7 exporting config sha256:3c7bff74e8e9a971c39cb41e519656a8ede61c53accdf0e7138a9606c8d8b09a 0.0s done
+#7 exporting attestation manifest sha256:2ce70f864a25e562649a988951320d1fcf7395b607adc051f4a031340b68dc54 0.0s done
+#7 exporting manifest list sha256:d1e4162f403721309d91a7f4b791d4928a387628a75a3014cee90690813c5ea8 0.0s done
+#7 naming to docker.io/lincey/tp_pipeline:latest done
+#7 unpacking to docker.io/lincey/tp_pipeline:latest 0.1s done
+#7 DONE 0.8s
+[tp_pipeline] $ docker build -t lincey/tp_pipeline:latest --pull=true /var/jenkins_home/workspace/tp_pipeline
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 98B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/tomcat:9.0
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B 0.0s done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/tomcat:9.0@sha256:8299f3e2f559f57c683a38ff903b0caff1d789a2932686d30422f9dcd99c130e
+#4 resolve docker.io/library/tomcat:9.0@sha256:8299f3e2f559f57c683a38ff903b0caff1d789a2932686d30422f9dcd99c130e 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 78B 1.6s done
+#5 DONE 1.7s
+
+#6 [2/2] COPY target/*.war /usr/local/tomcat/webapps/
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:2dd4f0595827adfed37174ae181dd8e67f02c5f20ad5cb2a47f83892296b891d done
+#7 exporting config sha256:3c7bff74e8e9a971c39cb41e519656a8ede61c53accdf0e7138a9606c8d8b09a done
+#7 exporting attestation manifest sha256:e6d2a43d6ed0adc15b9b30f77453ff6cd4081655d22b56c721f1fb886c83325b
+#7 exporting attestation manifest sha256:e6d2a43d6ed0adc15b9b30f77453ff6cd4081655d22b56c721f1fb886c83325b 0.0s done
+#7 exporting manifest list sha256:78b3d38c179239908f2106c9fc00ba8df7a4d6588db53ae3c7fb929ea5012e50 done
+#7 naming to docker.io/lincey/tp_pipeline:latest done
+#7 unpacking to docker.io/lincey/tp_pipeline:latest 0.0s done
+#7 DONE 0.1s
+[tp_pipeline] $ docker push lincey/tp_pipeline:latest
+The push refers to repository [docker.io/lincey/tp_pipeline]
+2f0d0e3c970f: Waiting
+3415ae8e7c78: Waiting
+4f4fb700ef54: Waiting
+865114aeca46: Waiting
+5a7813e071bf: Waiting
+8dbbbc6af9dc: Waiting
+dcc1c5ea3c7d: Waiting
+bbbc5226420a: Waiting
+91e6cc55403a: Waiting
+a10b6847b9f1: Waiting
+dcc1c5ea3c7d: Waiting
+bbbc5226420a: Waiting
+91e6cc55403a: Waiting
+a10b6847b9f1: Waiting
+2f0d0e3c970f: Waiting
+3415ae8e7c78: Waiting
+4f4fb700ef54: Waiting
+865114aeca46: Waiting
+5a7813e071bf: Waiting
+8dbbbc6af9dc: Waiting
+3415ae8e7c78: Waiting
+4f4fb700ef54: Waiting
+865114aeca46: Waiting
+5a7813e071bf: Waiting
+8dbbbc6af9dc: Waiting
+2f0d0e3c970f: Waiting
+bbbc5226420a: Waiting
+91e6cc55403a: Waiting
+a10b6847b9f1: Waiting
+dcc1c5ea3c7d: Waiting
+bbbc5226420a: Waiting
+91e6cc55403a: Waiting
+a10b6847b9f1: Layer already exists
+dcc1c5ea3c7d: Waiting
+3415ae8e7c78: Waiting
+4f4fb700ef54: Layer already exists
+865114aeca46: Waiting
+5a7813e071bf: Waiting
+8dbbbc6af9dc: Waiting
+2f0d0e3c970f: Waiting
+push access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+Build step 'Docker Build and Publish' marked build as failure
+Finished: FAILURE
