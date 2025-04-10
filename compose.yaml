@@ -18,6 +18,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     privileged: true
+  
 
 volumes:
   jenkins_home:
